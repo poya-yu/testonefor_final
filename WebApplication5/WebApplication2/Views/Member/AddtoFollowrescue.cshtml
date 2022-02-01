@@ -1,0 +1,43 @@
+﻿@model WebApplication2.Models.tRescue
+
+@{
+    ViewBag.Title = "AddtoFollowrescue";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+<h2>AddtoFollowrescue</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>tRescue</h4>
+        <hr />
+        <h5>加入追蹤的通報</h5>
+        <input name="RescueID" value="@Model.RescueID"/>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h5>會員</h5>
+            <div class="col-md-10">
+                @Html.TextBox("txtFollowID", Session["LoginSucess"])
+            </div>
+        </div>
+
+       
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="加入追蹤" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

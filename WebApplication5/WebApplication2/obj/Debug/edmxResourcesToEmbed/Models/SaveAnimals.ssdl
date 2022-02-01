@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SaveAnimalsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FollowRescue">
+    <Key>
+      <PropertyRef Name="FollowID" />
+    </Key>
+    <Property Name="FollowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FollowMemberID" Type="int" Nullable="false" />
+    <Property Name="FollowResue" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tBlog">
+    <Key>
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="BlogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BlogMemberID" Type="int" Nullable="false" />
+    <Property Name="BlogCategory" Type="bit" Nullable="false" />
+    <Property Name="BlogTitle" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="BlogContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Created_At" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tMember">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="MemberAccount" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="MemberPassword" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Created_At" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tPosition">
+    <Key>
+      <PropertyRef Name="positionID" />
+    </Key>
+    <Property Name="positionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="positionBelong" Type="int" Nullable="false" />
+    <Property Name="positionPosition" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tRescue">
+    <Key>
+      <PropertyRef Name="RescueID" />
+    </Key>
+    <Property Name="RescueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RescueMemberID" Type="int" Nullable="false" />
+    <Property Name="RescueTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ResCueDone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RescuePictures" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="RescuePosition" Type="int" Nullable="false" />
+    <Property Name="RescuePosition1" Type="int" />
+    <Property Name="RescueEvent" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="RescueSpecies" Type="int" Nullable="false" />
+    <Property Name="RescueProgress" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created_At" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tSpecies">
+    <Key>
+      <PropertyRef Name="SpeciesID" />
+    </Key>
+    <Property Name="SpeciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpeciesName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__FollowRes__Follo__6754599E">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="FollowRescue" Type="Self.FollowRescue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="FollowRescue">
+        <PropertyRef Name="FollowMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FollowRes__Follo__68487DD7">
+    <End Role="tRescue" Type="Self.tRescue" Multiplicity="1" />
+    <End Role="FollowRescue" Type="Self.FollowRescue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRescue">
+        <PropertyRef Name="RescueID" />
+      </Principal>
+      <Dependent Role="FollowRescue">
+        <PropertyRef Name="FollowResue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tBlog__BlogMembe__45F365D3">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="tBlog" Type="Self.tBlog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="tBlog">
+        <PropertyRef Name="BlogMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tRescue__RescueM__5BE2A6F2">
+    <End Role="tMember" Type="Self.tMember" Multiplicity="1" />
+    <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMember">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="tRescue">
+        <PropertyRef Name="RescueMemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tRescue__RescueP__5DCAEF64">
+    <End Role="tPosition" Type="Self.tPosition" Multiplicity="1" />
+    <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tPosition">
+        <PropertyRef Name="positionID" />
+      </Principal>
+      <Dependent Role="tRescue">
+        <PropertyRef Name="RescuePosition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tRescue__RescueS__5CD6CB2B">
+    <End Role="tSpecies" Type="Self.tSpecies" Multiplicity="1" />
+    <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tSpecies">
+        <PropertyRef Name="SpeciesID" />
+      </Principal>
+      <Dependent Role="tRescue">
+        <PropertyRef Name="RescueSpecies" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRescue_tPosition">
+    <End Role="tPosition" Type="Self.tPosition" Multiplicity="0..1" />
+    <End Role="tRescue" Type="Self.tRescue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tPosition">
+        <PropertyRef Name="positionID" />
+      </Principal>
+      <Dependent Role="tRescue">
+        <PropertyRef Name="RescuePosition1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SaveAnimalsModelStoreContainer">
+    <EntitySet Name="FollowRescue" EntityType="Self.FollowRescue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tBlog" EntityType="Self.tBlog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMember" EntityType="Self.tMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPosition" EntityType="Self.tPosition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tRescue" EntityType="Self.tRescue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tSpecies" EntityType="Self.tSpecies" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__FollowRes__Follo__6754599E" Association="Self.FK__FollowRes__Follo__6754599E">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="FollowRescue" EntitySet="FollowRescue" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FollowRes__Follo__68487DD7" Association="Self.FK__FollowRes__Follo__68487DD7">
+      <End Role="tRescue" EntitySet="tRescue" />
+      <End Role="FollowRescue" EntitySet="FollowRescue" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tBlog__BlogMembe__45F365D3" Association="Self.FK__tBlog__BlogMembe__45F365D3">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tBlog" EntitySet="tBlog" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tRescue__RescueM__5BE2A6F2" Association="Self.FK__tRescue__RescueM__5BE2A6F2">
+      <End Role="tMember" EntitySet="tMember" />
+      <End Role="tRescue" EntitySet="tRescue" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tRescue__RescueP__5DCAEF64" Association="Self.FK__tRescue__RescueP__5DCAEF64">
+      <End Role="tPosition" EntitySet="tPosition" />
+      <End Role="tRescue" EntitySet="tRescue" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tRescue__RescueS__5CD6CB2B" Association="Self.FK__tRescue__RescueS__5CD6CB2B">
+      <End Role="tSpecies" EntitySet="tSpecies" />
+      <End Role="tRescue" EntitySet="tRescue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRescue_tPosition" Association="Self.FK_tRescue_tPosition">
+      <End Role="tPosition" EntitySet="tPosition" />
+      <End Role="tRescue" EntitySet="tRescue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,100 @@
+﻿@model WebApplication2.Models.tRescue
+
+@{
+    ViewBag.Title = "NonMemberRescueDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NonMemberRescueDetail</h2>
+
+<div>
+    <h4>tRescue</h4>
+    <input type="hidden" name="RescueID" value="@Model.RescueID" />
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.RescueID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RescueID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescueMemberID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RescueMemberID)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescueTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RescueTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResCueDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResCueDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescuePictures)
+        </dt>
+
+        <dd>
+            <img src="~/Images/@Model.RescuePictures" style="width:240px;height:180px;"> 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescuePosition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tPosition.positionPosition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescueEvent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RescueEvent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescueSpecies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tSpecies.SpeciesName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RescueProgress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RescueProgress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Created_At)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Created_At)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

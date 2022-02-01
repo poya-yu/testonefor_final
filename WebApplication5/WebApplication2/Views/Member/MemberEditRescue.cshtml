@@ -1,0 +1,166 @@
+﻿@model WebApplication2.ViewModel.CRescueViewModel
+
+@{
+    ViewBag.Title = "MemberEditRescue";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+<h2>MemberEditRescue</h2>
+
+
+@using (Html.BeginForm("MemberEditRescue", "Member", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="RescueID" value="@Model.RescueID" />
+    <div class="form-horizontal">
+        <h4>tRescue</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.RescueID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RescueID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RescueID, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.RescueMemberID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RescueMemberID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RescueMemberID, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescueTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("drop1", new SelectList(new string[] { "通報拾獲", "通報協尋", "通報救援", "通報其他" }))
+                @*@Html.EditorFor(model => model.RescueTitle, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.RescueTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ResCueDone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("drop2", new SelectList(new string[] { "未結案", "已結案" }))
+                @*@Html.EditorFor(model => model.ResCueDone, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.ResCueDone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescuePictures, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                <input type="file" name="RePictures" />
+                @*@Html.EditorFor(model => model.RescuePictures, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RescuePictures, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescuePosition, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.RescuePosition, (IEnumerable<SelectListItem>)ViewBag.City, "請選擇", new { @class = "form-control", @id = "City" })
+                @*@Html.EditorFor(model => model.RescuePosition, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.RescuePosition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescuePosition1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.RescuePosition1, (IEnumerable<SelectListItem>)ViewBag.Country, "請選擇", new { @class = "form-control", @id = "Country" })
+                @Html.ValidationMessageFor(model => model.RescuePosition1, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.RescuePosition, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RescuePosition, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RescuePosition, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescueEvent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RescueEvent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RescueEvent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescueSpecies, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.RescueSpecies, (IEnumerable<SelectListItem>)ViewBag.Species, "請選擇")
+                @*@Html.EditorFor(model => model.RescueSpecies, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.RescueSpecies, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RescueProgress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RescueProgress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RescueProgress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Created_At, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Created_At, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Created_At, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $('#City').change(function () {
+        var selectedCity = $('#City option:selected').val();
+        var country = $('#Country');
+        country.empty();
+        $.ajax({
+            type: "Post",
+            url: '@Url.Action("section", "Member")?id=' + selectedCity,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data == "") {
+                    country.append("<option value=''>請選擇</option>");
+                }
+                else {
+                    var jo = JSON.parse(data);
+                    country.append("<option value=''>請選擇</option>");
+                    console.log(jo);
+                    for (i = 0; i < jo.length; i++) {
+                        country.append("<option value='" + jo[i].Value + "'>" + jo[i].Text + "</option>");
+                    }
+                }
+            },
+            failure: function (errMsg) {
+                country.append("<option value=''>請選擇縣市</option>");
+            }
+        })
+    })
+    </script>
+
+}

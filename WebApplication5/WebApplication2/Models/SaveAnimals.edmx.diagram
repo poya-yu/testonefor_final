@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="12192f22b2a44b1ba9568a052c21271a" Name="Diagram1">
+        <EntityTypeShape EntityType="SaveAnimalsModel.tBlog" Width="1.5" PointX="3.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tMember" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tBlog__BlogMembe__4222D4EF" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tPosition" Width="1.5" PointX="8.125" PointY="2.75" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tSpecies" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.FollowRescue" Width="1.5" PointX="5.875" PointY="2.625" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__FollowRes__Follo__6754599E" />
+        <EntityTypeShape EntityType="SaveAnimalsModel.tRescue" Width="1.5" PointX="10.375" PointY="1" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__FollowRes__Follo__68487DD7" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueM__5BE2A6F2" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueP__5DCAEF64" />
+        <AssociationConnector Association="SaveAnimalsModel.FK_tRescue_tPosition" />
+        <AssociationConnector Association="SaveAnimalsModel.FK__tRescue__RescueS__5CD6CB2B" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

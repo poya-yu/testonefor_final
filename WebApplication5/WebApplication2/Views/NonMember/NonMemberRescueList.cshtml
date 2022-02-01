@@ -1,0 +1,97 @@
+﻿@model IEnumerable<WebApplication2.Models.tRescue>
+
+@{
+    ViewBag.Title = "NonMemberRescueList";
+}
+
+<h2>NonMemberRescueList</h2>
+
+@using (Html.BeginForm())
+{
+<p>
+    關鍵字 @Html.TextBox("txtKeyword")
+    物種: @Html.DropDownList("ResCueDonesearch", new SelectList(new string[] { "未結案", "已結案" }))
+    <input type="submit" value="搜尋" />
+</p>
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueMemberID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResCueDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescuePictures)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescuePosition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueEvent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueSpecies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueProgress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_At)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RescueID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RescueMemberID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RescueTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResCueDone)
+            </td>
+            <td>
+                <img src="~/Images/@item.RescuePictures" style="width:120px;height:90px;">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tPosition.positionPosition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RescueEvent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tSpecies.SpeciesName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RescueProgress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Created_At)
+            </td>
+            <td>
+                @Html.ActionLink("加入追蹤", "AddtoFollowrescue", new { id = item.RescueID }) |
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "NonMemberRescueDetail", new {  id= item.RescueID }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

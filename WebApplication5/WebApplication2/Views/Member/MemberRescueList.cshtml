@@ -1,0 +1,133 @@
+﻿@model IEnumerable<WebApplication2.Models.tRescue>
+
+@{
+    ViewBag.Title = "MemberRescueList";
+    Layout = "~/Views/Shared/_LayoutMember.cshtml";
+}
+
+<h2>MemberRescueList</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        關鍵字 @Html.TextBox("txtKeyword")
+        <input type="submit" value="搜尋" />
+    </p>
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "MemberCreateRescue")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueMemberID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResCueDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescuePictures)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescuePosition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescuePosition1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueEvent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueSpecies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RescueProgress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Created_At)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.RescueID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RescueMemberID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RescueTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ResCueDone)
+    </td>
+    <td>
+        <img src="~/Images/@item.RescuePictures" style="width:120px;height:90px;">
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tPosition.positionPosition)
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tPosition1.positionPosition)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RescueEvent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.tSpecies.SpeciesName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RescueProgress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Created_At)
+    </td>
+    <td>
+        @Html.ActionLink("加入追蹤", "AddtoFollowrescue", new { id = item.RescueID }) |
+        @Html.ActionLink("Edit", "MemberEditRescue", new { id = item.RescueID }) |
+        @Html.ActionLink("刪除", "MemberDeleteRescue", new { id = item.RescueID }, new { onclick = "return confirm('確定要刪除嗎?')" })
+    </td>
+</tr>
+    }
+
+</table>
+<script>
+    function ChangePosition() {
+        var positionCity = $("RescuePosition").val();
+        var positionCountry = $("RescuePosition1");
+        positionCountry.empty();
+        $.ajax({
+            type: "Post",
+            url:'@Url.Action("Village","Member")? id = '+positionCity,
+                contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data == "") {
+                    positionCountry.append("<option value='選擇縣市'></option>")
+                }
+                else {
+                    var aryPosition = JSON.parse(data);
+                    $.each(aryPosition, function (index, val) {
+                        positionCountry.append("<option value='" + val.Value + "' > " + val.Text + "</option>");
+                    });
+                }
+            },
+            failure: function (errMsg) {
+                positionCountry.append("<option value=''>請選擇縣市</option>");
+            }
+            
+        })
+    }
+</script>
