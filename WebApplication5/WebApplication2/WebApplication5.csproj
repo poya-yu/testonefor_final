@@ -152,9 +152,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SaveAnimals.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\tBlog.cs">
-      <DependentUpon>SaveAnimals.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tMember.cs">
       <DependentUpon>SaveAnimals.tt</DependentUpon>
     </Compile>
